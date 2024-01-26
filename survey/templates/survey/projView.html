@@ -1,0 +1,114 @@
+{% extends "survey/base.html" %}
+{% block content %}
+
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+  {{message}}
+</div>
+ 
+  {% endfor %}
+
+
+<div class="d-flex justify-content-center p-4">
+  <div class='p-3 position-absolute top-0 start-0'>
+    <a class="icon-link icon-link-hover btn btn-outline-primary" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="{% url "home" %}">
+   
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+        <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+      </svg>
+    </a>
+    
+  </div>
+  <h3>{{project.name}}</h3>
+</div>
+
+<div class="d-flex justify-content-around p-3">
+    <h5>{{project.description}}</h5>
+
+    <div class="card shadow-lg" style="width: 18rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title">Take Survey</h5>
+          <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Click Here
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background-image: linear-gradient(to bottom right, white, blue);">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Complete Survey</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method='POST'>
+          {% csrf_token %} 
+          {{form.as_p}}
+  
+          <input type="submit" name="submit" />
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <table class="table overflow-auto h-100 border border-primary border-top-0 caption-top table-striped table-hover">
+            <caption>Associated Surveys</caption>
+            <thead class="text-primary table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">project</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">location</th>
+                    <th scope="col">Accomodation</th>
+                    <th scope="col">Guests</th>
+                    <th scope="col">Hotel Rating</th>
+                    <th scope="col">Leisure Activities</th>
+                    <th scope="col">Preferred Checkin</th>
+                    <th scope="col">Preferred Checkout</th>
+                  </tr>
+            </thead>
+            <tbody>
+                
+                
+                {% for survey in survey  %}
+                {% if survey.project.name == project.name %}
+                
+                <tr>
+                    <td>{{survey.id}}</td>
+                    <td>{{survey.project}}</td>
+                    <td>{{survey.name}}</td>
+                    <td>{{survey.location}}</td>
+                    <td>{{survey.accomodation}}</td>
+                    <td>{{survey.guests}}</td>
+                    <td>{{survey.rating}}</td>
+                    <td>{{survey.leisure}}</td>
+                    <td>{{survey.checkin}}</td>
+                    <td>{{survey.checkout}}</td>                          
+                </tr>
+                
+                {% endif %}
+        
+              
+        
+              {% endfor %}
+                
+              
+            </tbody>
+          </table>
+    </div>
+  </div>
+
+
+
+{% endblock content %}

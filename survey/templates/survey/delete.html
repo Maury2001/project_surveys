@@ -1,0 +1,13 @@
+{% extends "survey/base.html" %}
+{% block content %}
+
+<div class="card position-absolute top-50 start-50 translate-middle bg-dark p-2 text-dark bg-opacity-25 shadow-lg rounded" style="width: 50rem;">
+    
+  <form method='POST'>
+    {% csrf_token %}
+   <p>Are you sure you want to delete?</p>
+    <input type='submit' name='submit'/>
+</form>
+  </div>
+
+{% endblock content %}

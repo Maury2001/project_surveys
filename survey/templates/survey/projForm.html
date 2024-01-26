@@ -1,0 +1,22 @@
+{% extends "survey/base.html" %}
+{% load static %}
+{% block content %}
+<section
+style="background-image: url('{% static "images/proj.jpg" %}');  
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+       height: 100vh">
+<div class="card position-absolute top-50 start-50 translate-middle bg-dark p-2 text-dark bg-opacity-25 shadow-lg rounded" style="width: 50rem;">
+    
+    <div class="card-body">
+        <form method='POST'>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type='submit' name='submit'/>
+        </form>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

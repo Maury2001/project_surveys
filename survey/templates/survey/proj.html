@@ -1,0 +1,70 @@
+{% extends "survey/base.html" %}
+{% block content %}
+<div class='p-3 position-absolute top-0 start-0'>
+  <a class="icon-link icon-link-hover btn btn-outline-primary" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="{% url "home" %}">
+ 
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+      <path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+    </svg>
+  </a>
+  
+</div>
+<div class='p-5'></div>
+
+<div class="d-flex justify-content-around">
+    <div class="card shadow-lg hover:shadow" style="width: 18rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title">Total Surveys</h5>
+          <p class="card-text">{{total_surveys}}</p>
+          
+        </div>
+      </div>
+
+      <div class="card shadow-lg" style="width: 18rem;">
+        
+        <div class="card-body">
+          <h5 class="card-title">Take Survey</h5>
+          <a href="{% url "survey" %}" class="btn btn-primary">Click Here</a>
+        </div>
+      </div>
+</div>
+
+<div class='p-5 mt-5'>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">project</th>
+            <th scope="col">Name</th>
+            <th scope="col">location</th>
+            <th scope="col">Accomodation</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Hotel Rating</th>
+            <th scope="col">Leisure Activities</th>
+            <th scope="col">Preferred Checkin</th>
+            <th scope="col">Preferred Checkout</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for s in survey %}
+          <tr>
+            <td>{{s.id}}</td>
+            <td>{{s.project}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.location}}</td>
+            <td>{{s.accomodation}}</td>
+            <td>{{s.guests}}</td>
+            <td>{{s.rating}}</td>
+            <td>{{s.leisure}}</td>
+            <td>{{s.checkin}}</td>
+            <td>{{s.checkout}}</td>
+            <td><a href="#" class="link-success">Approve</a></td>
+            <td><a href="#" class="link-danger">Disapprove</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+{% endblock content %}
